@@ -1,0 +1,9 @@
+*** Texto do Primeiro Card ***
+
+Mais eficiência na gestão dos usuários e de seus benefícios. Chega de sistemas antigos e sem usabilidade, agora com o Crud Users seu trabalho fica até 3x mais rápido e simplificado.
+Confira um resumo das informações em nosso Dashboard
+
+*** Citação do Card da direita ***
+
+"Um ser humano deve transformar informação em inteligência ou conhecimento. Tendemos a esquecer que nenhum computador jamais fará uma nova pergunta"
+
