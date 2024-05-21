@@ -14,6 +14,10 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { AngularFireModule } from '@angular/fire/compat';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from '../environments/environment.development';
+import { CrudComponent } from './pages/crud/crud.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { environment } from '../environments/environment.development';
     ButtonComponent,
     LoginComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    CrudComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,9 @@ import { environment } from '../environments/environment.development';
     FormsModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig)
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    MatTableModule,
+    MatInputModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp({"projectId":"crud-usuarios-angular-17","appId":"1:291639424411:web:a338e637fdde725ecbdd3e","storageBucket":"crud-usuarios-angular-17.appspot.com","apiKey":"AIzaSyDDKwITV8XvdJNq_mCb49aBOT-PS2hViKI","authDomain":"crud-usuarios-angular-17.firebaseapp.com","messagingSenderId":"291639424411"})),
