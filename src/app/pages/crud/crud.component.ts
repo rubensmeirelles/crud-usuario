@@ -21,6 +21,8 @@ export class CrudComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  totalUsers: number
+
   constructor(private userService: UsersService, public dialog: MatDialog){
     this.dataSource = new MatTableDataSource<any>(this.listUsers);
   }
@@ -41,6 +43,8 @@ export class CrudComponent {
         this.dataSource = new MatTableDataSource<any>(this.listUsers);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.totalUsers = this.listUsers.length
+        console.log(this.totalUsers)
       },
       error: (err) => {
         console.error(err)
