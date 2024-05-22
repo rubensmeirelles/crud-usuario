@@ -19,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalViewUserComponent } from './pages/crud/modal-view-user/modal-view-user.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { MatTableModule } from '@angular/material/table';
     LoginComponent,
     HomeComponent,
     MenuComponent,
-    CrudComponent
+    CrudComponent,
+    ModalViewUserComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp({"projectId":"crud-usuarios-angular-17","appId":"1:291639424411:web:a338e637fdde725ecbdd3e","storageBucket":"crud-usuarios-angular-17.appspot.com","apiKey":"AIzaSyDDKwITV8XvdJNq_mCb49aBOT-PS2hViKI","authDomain":"crud-usuarios-angular-17.firebaseapp.com","messagingSenderId":"291639424411"})),

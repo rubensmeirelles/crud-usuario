@@ -53,7 +53,7 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
           <td class="td-table" mat-cell *matCellDef="let user">
-            <mat-icon class="icone-tabela">visibility</mat-icon>
+            <mat-icon class="icone-tabela" (click)="openModalViewuser(user)">visibility</mat-icon>
             <mat-icon class="icone-tabela">edit</mat-icon>
             <mat-icon class="icone-tabela">delete</mat-icon>
           </td>
