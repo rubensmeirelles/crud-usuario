@@ -53,9 +53,9 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
           <td class="td-table" mat-cell *matCellDef="let user">
-            <mat-icon class="icone-tabela" (click)="openModalViewuser(user)">visibility</mat-icon>
-            <mat-icon class="icone-tabela">edit</mat-icon>
-            <mat-icon class="icone-tabela">delete</mat-icon>
+            <mat-icon class="icone-tabela" (click)="openModalViewUser(user)">visibility</mat-icon>
+            <mat-icon class="icone-tabela" (click)="openModalEditUser(user)">edit</mat-icon>
+            <mat-icon class="icone-tabela" (click)="deleteUser(user)">delete</mat-icon>
           </td>
         </ng-container>
 
@@ -65,7 +65,7 @@
 
         <!-- Row shown when there is no matching data. -->
         <tr class="mat-row" *matNoDataRow>
-          <td class="td-table" class="mat-cell" colspan="4">ana~so foram encontrados dados para a pesquisa: "{{input.value}}"</td>
+          <td class="td-table" class="mat-cell" colspan="4">Não foram encontrados dados para a pesquisa: "{{input.value}}"</td>
         </tr>
       </table>
 

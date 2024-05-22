@@ -1,7 +1,8 @@
 <div class="containerfluid p-3">
   <mat-icon class="float-end hover" (click)="closeModal()">close</mat-icon>
 
-  <h1 class="titulo">Cadastro de usuário</h1>
+  <h1 class="titulo">{{ editUser ? 'Editar usuário' : 'Cadastrar usuário' }}</h1>
+
   <h2 class="subtitulo">Preencha o formulário para salvar o usuário</h2>
 
   <form class="row" [formGroup]="formUser">
@@ -68,7 +69,9 @@
     </div>
 
     <div class="col-12">
-      <button class="botao-primario float-end" [disabled]="!formUser.valid" (click)="saveUser()">Salvar</button>
+      <button class="botao-primario float-end" [disabled]="!formUser.valid" (click)="saveUser()">
+        {{ editUser ? 'Editar usuário' : 'Salvar usuário' }}
+      </button>
     </div>
   </form>
 </div>

@@ -38,7 +38,6 @@ export class CrudComponent {
     this.userService.getAllUsers().subscribe({
       next: (response: any) => {
         this.listUsers = response
-
         this.dataSource = new MatTableDataSource<any>(this.listUsers);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -49,6 +48,28 @@ export class CrudComponent {
     })
   }
 
+  deleteUser(user: User) {
+    if (window.confirm("Confirma a exclusão do usuário? " + user.name)) {
+      if (user.firebaseId) { // Verifica se user.firebaseId não é undefined
+        this.userService.deleteUser(user.firebaseId).then(
+          (response: any) => {
+            // Lógica após a exclusão do usuário
+          }
+        ).catch(
+          (error: any) => {
+            // Lógica de tratamento de erro
+            window.alert("Erro ao excluir o usuário!");
+          }
+        );
+      } else {
+        window.alert("ID do usuário é inválido!");
+      }
+    } else {
+      window.alert("Exclusão cancelada!");
+    }
+  }
+
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -58,7 +79,7 @@ export class CrudComponent {
     }
   }
 
-  openModalViewuser(user: User) {
+  openModalViewUser(user: User) {
     this.dialog.open(ModalViewUserComponent, {
       width: '700px',
       height: '330px',
@@ -70,6 +91,14 @@ export class CrudComponent {
     this.dialog.open(ModalFormUserComponent, {
       width: '700px',
       height: '400px'
+    }).afterClosed().subscribe(() => this.getListUsers());
+  }
+
+  openModalEditUser(user: User) {
+    this.dialog.open(ModalFormUserComponent, {
+      width: '700px',
+      height: '400px',
+      data: user
     }).afterClosed().subscribe(() => this.getListUsers());
   }
 }

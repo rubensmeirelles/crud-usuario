@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UsersService } from '../../../services/users.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { UsersService } from '../../../services/users.service';
 export class ModalFormUserComponent {
 
   formUser: FormGroup;
+  editUser: boolean = false;
 
   planosSaude = [
     {
@@ -42,10 +43,18 @@ export class ModalFormUserComponent {
     }
   ]
 
-  constructor(public dialogRef: MatDialogRef<ModalFormUserComponent>, private formBuilder: FormBuilder, private userService: UsersService){}
+  constructor(
+    public dialogRef: MatDialogRef<ModalFormUserComponent>,
+    private formBuilder: FormBuilder,
+    private userService: UsersService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+  ){}
 
   ngOnInit() {
     this.buildForm();
+    if (this.data && this.data.name) {
+      this.editUser = true;
+    }
   }
 
   buildForm() {
@@ -57,20 +66,52 @@ export class ModalFormUserComponent {
       healthPlan: [''],
       dentalPlan: [''],
     })
+    //validação para verificar se srá aberto o modal de adicionar ou editar o usuário
+    if (this.data && this.data.name) {
+      this.fillForm();
+    }
+  }
+
+  //função para pegar o formulário construido pela função buildForm e preencher os campos que tem no data
+  fillForm() {
+    this.formUser.patchValue({
+      name: this.data.name,
+      email: this.data.email,
+      sector: this.data.sector,
+      role: this.data.role,
+      healthPlan: this.data.healthPlan,
+      dentalPlan: this.data.dentalPlan,
+    })
   }
 
   saveUser() {
-    const objUserForm = this.formUser.getRawValue();
     //getRawValue - captura os dados em forma de objeto
-    this.userService.addUser(objUserForm).then(
-      (response: any) => {
-        window.alert("Usuário salvo com sucesso!")
-        this.closeModal();
-      })
-      .catch(err => {
-        window.alert("Erro ao salvar usuário!")
-        console.error(err);
-      })
+    const objUserForm = this.formUser.getRawValue();
+
+    //verifica se o data veio preenchido para salvar um novo usuário ou atualizar o cadastro
+    if (this.data && this.data.name) {
+
+      this.userService.update(this.data.firebaseId, objUserForm).then(
+        (response: any) => {
+          window.alert("Usuário editado com sucesso!")
+          this.closeModal();
+        })
+        .catch(err => {
+          window.alert("Erro ao editar usuário!")
+          console.error(err);
+        })
+
+    } else {
+      this.userService.addUser(objUserForm).then(
+        (response: any) => {
+          window.alert("Usuário salvo com sucesso!")
+          this.closeModal();
+        })
+        .catch(err => {
+          window.alert("Erro ao salvar usuário!")
+          console.error(err);
+        })
+    }
   }
 
   closeModal(){this.dialogRef.close()}
