@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonComponent } from './components/button/button.component';
 import { LoginComponent } from './pages/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -20,6 +20,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import { ModalViewUserComponent } from './pages/crud/modal-view-user/modal-view-user.component';
 import { ModalFormUserComponent } from './pages/crud/modal-form-user/modal-form-user.component';
 
@@ -39,6 +40,7 @@ import { ModalFormUserComponent } from './pages/crud/modal-form-user/modal-form-
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -46,7 +48,8 @@ import { ModalFormUserComponent } from './pages/crud/modal-form-user/modal-form-
     MatInputModule,
     MatPaginatorModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp({"projectId":"crud-usuarios-angular-17","appId":"1:291639424411:web:a338e637fdde725ecbdd3e","storageBucket":"crud-usuarios-angular-17.appspot.com","apiKey":"AIzaSyDDKwITV8XvdJNq_mCb49aBOT-PS2hViKI","authDomain":"crud-usuarios-angular-17.firebaseapp.com","messagingSenderId":"291639424411"})),
